@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template Placeholder DDIA V2 Ch. 1 — Mark Triassi</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header>
+    <a href="/" class="site-name">Mark Triassi</a>
+  </header>
+
+  <article class="post">
+    <div class="post-header">
+      <p class="post-series">Designing Data-Intensive Applications</p>
+      <h1>Chapter 1 — Trade-Offs in Data Systems Architecture</h1>
+      <p class="post-date">May 2026</p>
+    </div>
+
+    <div class="post-body">
+
+      <p class="hook">
+        <!-- Hook: start with the problem, not "this chapter covers..." -->
+        Most systems don't fail all at once. They degrade quietly — a slow query here, a dropped request there — until something breaks badly enough to notice. Chapter 1 is about naming the forces behind that degradation so you can actually reason about them.
+      </p>
+
+      <h2>The core idea</h2>
+      <p>
+        <!-- One paragraph, plain English. What is the key insight? -->
+        Kleppmann splits the concerns of any data system into three properties: reliability (works correctly even when things go wrong), scalability (handles growth without falling apart), and maintainability (other people can work on it without wanting to quit). Simple framing, but it gives you a vocabulary for every tradeoff that comes later in the book.
+      </p>
+
+      <h2>Key concepts</h2>
+
+      <h3>Reliability</h3>
+      <p>
+        <!-- Your take on this concept -->
+        The distinction between a fault and a failure matters here. A fault is a component deviating from spec. A failure is the whole system going down. The goal is to build systems that tolerate faults before they become failures. Netflix's Chaos Monkey is the extreme version of this — deliberately inject faults to test resilience.
+      </p>
+
+      <h3>Scalability</h3>
+      <p>
+        The chapter introduces load parameters — the numbers that describe your system's load (requests/sec, ratio of reads to writes, active users). You can't talk about scaling without first being specific about what you're scaling for. Twitter's fan-out problem is the example: sending a tweet is easy, but distributing it to millions of follower timelines is hard.
+      </p>
+
+      <h3>Maintainability</h3>
+      <p>
+        Three sub-properties: operability (easy to run day-to-day), simplicity (easy to understand), and evolvability (easy to change). This is the one that gets underinvested. Systems get harder to change over time, not because the code is bad, but because the complexity accumulates in ways nobody planned for.
+      </p>
+
+      <h2>What clicked for me</h2>
+      <p>
+        <!-- Your reaction — what surprised you, what you'd push back on -->
+        The framing of maintainability as a first-class concern alongside reliability and scalability stood out. Most teams treat maintainability as a nice-to-have that gets sacrificed when deadlines hit. Treating it as a core system property changes how you justify the work.
+      </p>
+
+      <h2>Real-world connection</h2>
+      <p>
+        <!-- Relate it to something concrete: a system you've used, a bug, an outage -->
+        The 2021 Facebook outage is a good example of the difference between a fault and a failure. A misconfigured BGP update was the fault. The cascading effect that took down Instagram, WhatsApp, and internal tooling for six hours was the failure. The systems weren't built to tolerate that particular class of fault.
+      </p>
+
+      <h2>TL;DR</h2>
+      <p>
+        <!-- One or two sentences. What should someone remember a week later? -->
+        Reliability, scalability, and maintainability are the three lenses for evaluating any data system. Know your load parameters before you talk about scaling, and treat maintainability as a property you design for, not a chore you do later.
+      </p>
+
+    </div>
+
+    <nav class="post-nav">
+      <a href="/">Back to all posts</a>
+      <!-- <a href="ddia-ch2.html">Next: Chapter 2 &rarr;</a> -->
+    </nav>
+  </article>
+
+  <script src="../main.js"></script>
+</body>
+</html>
